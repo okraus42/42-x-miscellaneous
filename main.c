@@ -104,12 +104,11 @@ int	main(void)
 	printf("b: %c | %x\n\n", b, b);
 	u = 0xA1B2C3D4;
 	x = &u;
-	c = (void *)x;
 	printf("u = 0xA1B2C3D4;\n");
-	ft_put_hex(c, 1);
-	ft_put_hex(c + 1, 1);
-	ft_put_hex(c + 2, 1);
-	ft_put_hex(c + 3, 1);
+	ft_put_hex(&u, 1);
+	ft_put_hex((void *)&u + 1, 1);
+	ft_put_hex((void *)&u + 2, 1);
+	ft_put_hex((void *)&u + 3, 1);
 	write (1, "\n", 1);
 	printf("u: %X\n\n", u);
 	c = ft_print_memory(&s[0], 1, 200);
