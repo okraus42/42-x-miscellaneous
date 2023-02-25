@@ -38,22 +38,40 @@ int	ft_put_bin(void *addr, int fd)
 	c = *(unsigned char *) addr;
 	while (i)
 	{
-		ft_put_bit(c, fd);
+		r += ft_put_bit(c, fd);
 		i--;
 		c <<= 1;
 	}
 	return (r);
 }
 
-static void	ft_put_hex(void *addr, int fd)
+static int	ft_put_octa(void *addr, int fd)
 {
 	unsigned int	i;
+	int				r;
 	unsigned char	*s;
 
 	i = 0;
+	r = 0;
 	s = (unsigned char *) addr;
-	write(fd, &"0123456789abcdef"[s[i] / 16], 1);
-	write(fd, &"0123456789abcdef"[s[i] % 16], 1);
+	r += write(fd, &"01234567"[s[i] / 64 % 8], 1);
+	r += write(fd, &"01234567"[s[i] / 8 % 8], 1);
+	r += write(fd, &"01234567"[s[i] % 8], 1);
+	return (r);
+}
+
+static int	ft_put_hex(void *addr, int fd)
+{
+	unsigned int	i;
+	int				r;
+	unsigned char	*s;
+
+	i = 0;
+	r = 0;
+	s = (unsigned char *) addr;
+	r += write(fd, &"0123456789abcdef"[s[i] / 16], 1);
+	r += write(fd, &"0123456789abcdef"[s[i] % 16], 1);
+	return (r);
 }
 
 int	main(void)
@@ -111,6 +129,12 @@ int	main(void)
 	ft_put_hex((void *)&u + 1, 1);
 	ft_put_hex((void *)&u + 2, 1);
 	ft_put_hex((void *)&u + 3, 1);
+	write (1, "\n", 1);
+	printf("u = 0xA1B2C3D4;\n");
+	ft_put_octa(&u, 1);
+	ft_put_octa((void *)&u + 1, 1);
+	ft_put_octa((void *)&u + 2, 1);
+	ft_put_octa((void *)&u + 3, 1);
 	write (1, "\n", 1);
 	b = *(unsigned char *)((void *)&u + 8);
 	write (1, " ", 1);
