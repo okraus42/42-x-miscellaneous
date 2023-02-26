@@ -16,8 +16,10 @@
 
 void	*ft_print_memory(void *addr, int fd, unsigned int size);
 
-//void	*ft_print_memory_2(void *addr, int fd, unsigned int size);
+void	*ft_print_memory_plus(void *addr, int fd, unsigned int size);
 
+//void	*ft_print_memory_2(void *addr, int fd, unsigned int size);
+/*
 static int	ft_put_bit(const unsigned char c, int fd)
 {
 	if (c & 0x80)
@@ -73,19 +75,39 @@ static int	ft_put_hex(void *addr, int fd)
 	r += write(fd, &"0123456789abcdef"[s[i] % 16], 1);
 	return (r);
 }
+*/
 
 int	main(void)
 {
-	unsigned char	a[17] = "0123456789abcdef";
-	unsigned char	b;
-	unsigned char	s[200] = "0123456789abc\200defghijkl\n\t\vafdadsfhaghag";
-	unsigned int	u;
-	unsigned long	l;
-	unsigned int	*x;
+	unsigned char	s[200] = "0123456789abcdef\n\n123456789abc\200defghijkl\n\t\vafdadsfhaghag";
 	void			*c;
 	int				fd;
 
+
 	fd = 1;
+	c = ft_print_memory_plus((void *)(&s[0]), fd, 88);
+	c = ft_print_memory((void *)(&s[0]), fd, 88);
+	c = ft_print_memory_plus((void *)((void *)&s[0] - 1024), fd, 16000);
+	return (0);
+}
+
+/*
+int	main(void)
+{
+
+	//unsigned char	a[17] = "0123456789abcdef";
+	//unsigned char	b;
+	unsigned char	s[200] = "0123456789abcdef\n\n123456789abc\200defghijkl\n\t\vafdadsfhaghag";
+	//unsigned int	u;
+	//unsigned long	l;
+	//unsigned long	m;
+	//unsigned int	*x;
+	void			*c;
+	int				fd;
+
+
+	fd = 1;
+	
 	b = 'b';
 	printf("a[5] = %c\n", a[5]);
 	printf("*(a + 5) = %c\n", *(a + 5));
@@ -178,15 +200,74 @@ int	main(void)
 	printf("u: %.8X, &=%p\n", *(unsigned int *)((void *)&u + 44), ((void *)&u + 44));
 	printf("u: %.8X, &=%p\n", *(unsigned int *)((void *)&u + 210), ((void *)&u + 210));
 	l = 0;
+	m = 1;
 	b = 0;
-	while (l < 40000000)
+	printf("\033[1mCOLOUR TEST\033[0m\n");
+	while (l < m)
+		l++;
+	printf("\r\x1b[1F\033[30;41;1;4;6mCOLOUR TEST\033[0m\n");
+	while (l > 0)
+		l--;
+	printf("\r\x1b[1F\033[30;41;1;4;6mC\033[93;42mOLOUR TEST\033[0m\n");
+	while (l < m)
+		l++;
+	printf("\r\x1b[1F\033[30;41;1;4;6mC\033[93;42mO\033[30;43;5mLOUR TEST\033[0m\n");
+	while (l > 0)
+		l--;
+	printf("\r\x1b[1F\033[30;41;1;4;6mC\033[93;42mO\033[30;43;5mL\033[37;44mOUR TEST\033[0m\n");
+	while (l < m)
+		l++;
+	printf("\r\x1b[1F\033[30;41;1;4;6mC\033[93;42mO\033[30;43;5mL\033[37;44mO\033[30;45mUR TEST\033[0m\n");
+	while (l > 0)
+		l--;
+	printf("\r\x1b[1F\033[30;41;1;4;6mC\033[93;42mO\033[30;43;5mL\033[37;44mO\033[30;45mU\033[46mR TEST\033[0m\n");
+	while (l < m)
+		l++;
+	printf("\r\x1b[1F\033[30;41;1;4;6mC\033[93;42mO\033[30;43;5mL\033[37;44mO\033[30;45mU\033[46mR\033[106m TEST\033[0m\n");
+	while (l > 0)
+		l--;
+	printf("\r\x1b[1F\033[30;41;1;4;6mC\033[93;42mO\033[30;43;5mL\033[37;44mO\033[30;45mU\033[46mR\033[106m \033[105mTEST\033[0m\n");
+	while (l < m)
+		l++;
+	printf("\r\x1b[1F\033[30;41;1;4;6mC\033[93;42mO\033[30;43;5mL\033[37;44mO\033[30;45mU\033[46mR\033[106m \033[105mT\033[104mEST\033[0m\n");
+	while (l > 0)
+		l--;
+	printf("\r\x1b[1F\033[30;41;1;4;6mC\033[93;42mO\033[30;43;5mL\033[37;44mO\033[30;45mU\033[46mR\033[106m \033[105mT\033[104mE\033[103mST\033[0m\n");
+	while (l < m)
+		l++;
+	printf("\r\x1b[1F\033[30;41;1;4;6mC\033[93;42mO\033[30;43;5mL\033[37;44mO\033[30;45mU\033[46mR\033[106m \033[105mT\033[104mE\033[103mS\033[102mT\033[0m\n");
+	while (l > 0)
+		l--;
+	printf("\r\x1b[1F\033[1;6mCOLOUR TEST\033[0m\n");
+	while (l < b)
+		l++;
+printf("\r\x1b[1F\033[30;41;1;4;6mC\033[93;42mO\033[30;43;5mL\033[37;44mO\033[30;45mU\033[46mR\033[106m \033[105mT\033[104mE\033[103mS\033[102mT\033[0m\n");
+	while (l > 0)
+		l--;
+	printf("\r\x1b[1F\033[1;4mCOLOUR TEST\033[0m\n");
+	while (l < m)
+		l++;
+	printf("\r\x1b[1F\033[30;41;1;6mC\033[93;42mO\033[30;43;5mL\033[37;44mO\033[30;45mU\033[46mR\033[106m \033[105mT\033[104mE\033[103mS\033[102mT\033[0m\n");
+	while (l > 0)
+		l--;
+	printf("\r\x1b[1F\033[1;4mCOLOUR TEST\033[0m\n");
+	while (l < m)
+		l++;
+	printf("\r\x1b[1F\033[30;41;1;6mC\033[93;42mO\033[30;43;5mL\033[37;44mO\033[30;45mU\033[46mR\033[106m \033[105mT\033[104mE\033[103mS\033[102mT\033[0m\n");
+	
+	l = 0;
+	b = 0;
+	while (l < 64)
 	{
 		write(1, &s[0 + l], 1);
 		l++;	
 	}
-	c = ft_print_memory((void *)((void *)&s[0] - 12000), 1, 18000);
+	
+	//c = ft_print_memory_plus((void *)((void *)&s[0] - 64), fd, 16);
+	c = ft_print_memory_plus((void *)(&s[0]), fd, 16);
 	return (0);
 }
+*/
 /*
 OTHER STUFF
 
