@@ -6,7 +6,7 @@
 /*   By: okraus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 15:42:15 by okraus            #+#    #+#             */
-/*   Updated: 2023/02/27 18:35:02 by okraus           ###   ########.fr       */
+/*   Updated: 2023/02/27 19:17:59 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static void	ft_put_hex(void *addr, int fd, unsigned int k)
 	while (i < 16)
 	{
 		if (k)
-		{_plus
+		{
 			ft_format_plus(fd, s[i]);
 			write(fd, &"0123456789ABCDEF"[s[i] / 16], 1);
 			write(fd, &"0123456789ABCDEF"[s[i] % 16], 1);

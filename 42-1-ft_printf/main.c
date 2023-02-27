@@ -6,7 +6,7 @@
 /*   By: okraus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 13:49:23 by okraus            #+#    #+#             */
-/*   Updated: 2023/02/27 19:12:05 by okraus           ###   ########.fr       */
+/*   Updated: 2023/02/27 19:19:39 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ int	main(void)
 	ft_printf(fd, "% 4.2P\n", (void *)&u);
 	ft_printf(fd, "%- 16.16P\n", (void *)&u);
 	ft_printf(fd, "%1Cone%C-%2Ctwo%C-%3Cthree%C-%4Cfour%C-%5Cfive%C-%6Csix%C-%7Cseven%C-%8Ceight%C-%9Cnine%C-%10Cten%C\n");
+	ft_printf(fd, "hexa: %3C%x%C\ncool: %8C%- 4.16P%C\nbin: %7C%- 4.2P%C\n", u, (void *)&u + 3, (void *)&u + 3);
 	return (0);
 }
