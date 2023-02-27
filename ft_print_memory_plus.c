@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_memory.c                                  :+:      :+:    :+:   */
+/*   ft_print_memory_plus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: okraus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 15:42:15 by okraus            #+#    #+#             */
-/*   Updated: 2023/02/22 18:29:50 by okraus           ###   ########.fr       */
+/*   Updated: 2023/02/27 18:35:02 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 static void	ft_format_plus(int fd, unsigned char c)
 {
 	if (c == 0)
-		fd = 1;
+		write(fd, "\033[0m", 4);
 	else if (c < 32 || c == 127)
-		write(fd, "\033[37;44m\0\0\0\0\0\0\0\0", 15);
+		write(fd, "\033[97;44m", 8);
 	else if (c < 127)
-		write(fd, "\033[30;42m\0\0\0\0\0\0\0\0", 15);
+		write(fd, "\033[92;40m", 8);
 	else
-		write(fd, "\033[30;41m\0\0\0\0\0\0\0\0", 14);
+		write(fd, "\033[1;41m", 7);
 }
 
 static void	ft_putaddr_fd(uintptr_t mem, int fd, unsigned int k)
@@ -60,23 +60,23 @@ static void	ft_put_hex(void *addr, int fd, unsigned int k)
 	unsigned int	i;
 	unsigned char	*s;
 
-	write(fd, ":\033[0m \0\0\0\0\0\0\0\0", 15);
+	write(fd, ":\033[0m ", 6);
 	i = 0;
 	s = (unsigned char *) addr;
 	while (i < 16)
 	{
 		if (k)
-		{
+		{_plus
 			ft_format_plus(fd, s[i]);
-			write(fd, &"0123456789abcdef"[s[i] / 16], 1);
-			write(fd, &"0123456789abcdef"[s[i] % 16], 1);
-			write(fd, "\033[0m\0\0\0\0\0\0\0\0\0\0\0\0", 14);
+			write(fd, &"0123456789ABCDEF"[s[i] / 16], 1);
+			write(fd, &"0123456789ABCDEF"[s[i] % 16], 1);
+			write(fd, "\033[0m", 4);
 			k--;
 		}
 		else
-			write(fd, "\033[0m  \0\0\0\0\0\0\0\0\0\0\0\0", 15);
+			write(fd, "\033[0m  ", 6);
 		if (i & 1)
-			write(fd, "\033[0m \0\0\0\0\0\0\0\0\0\0\0\0", 15);
+			write(fd, "\033[0m ", 5);
 		i++;
 	}
 }
@@ -94,14 +94,14 @@ static void	ft_put_char(void *addr, int fd, unsigned int k)
 		if (s[i] > 31 && s[i] < 127)
 		{
 			write(fd, &s[i], 1);
-			write(fd, "\033[0m\0\0\0\0\0\0\0\0\0\0\0\0", 15);
+			write(fd, "\033[0m", 4);
 		}
 		else
-			write(fd, ".\033[0m\0\0\0\0\0\0\0\0\0\0\0\0", 16);
+			write(fd, ".\033[0m", 5);
 		k--;
 		i++;
 	}
-	write(fd, "\033[0m\0\0\0\0\0\0\0\0\0\0\0\0", 15);
+	write(fd, "\033[0m", 4);
 	write(fd, "\n", 1);
 }
 

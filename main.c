@@ -6,7 +6,7 @@
 /*   By: okraus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 15:04:32 by okraus            #+#    #+#             */
-/*   Updated: 2023/02/22 18:37:31 by okraus           ###   ########.fr       */
+/*   Updated: 2023/02/27 17:21:28 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_put_bin(void *addr, int fd)
 	int				i;
 	int				r;
 
-	i = 8;
+	i = 8;00
 	r = 0;
 	c = *(unsigned char *) addr;
 	while (i)
@@ -79,15 +79,53 @@ static int	ft_put_hex(void *addr, int fd)
 
 int	main(void)
 {
-	unsigned char	s[200] = "0123456789abcdef\n\n123456789abc\200defghijkl\n\t\vafdadsfhaghag";
+	//unsigned char	s[200] = "0123456789abcdef\n\n123456789abc\200defghijkl\n\t\vafdadsfhaghag";
+	unsigned char	s2[1024];
 	void			*c;
 	int				fd;
+	int				i;
 
 
 	fd = 1;
-	c = ft_print_memory_plus((void *)(&s[0]), fd, 88);
-	c = ft_print_memory((void *)(&s[0]), fd, 88);
-	c = ft_print_memory_plus((void *)((void *)&s[0] - 1024), fd, 16000);
+	i = 0;
+	while (i < 256)
+	{
+		s2[i] = i;
+		i++;
+	}
+	while (i < 256 + 64)
+	{
+		s2[i] = 17;
+		i++;
+	}
+	while (i < 256 + 128)
+	{
+		s2[i] = ' ';
+		i++;
+	}
+	while (i < 1024)
+	{
+		s2[i] = 0;
+		i++;
+	}
+	c = ft_print_memory_plus((void *)(&s2[0]), fd, 500);
+	write(1, "\n", 1);
+	s2[256 + 128 + 16 + 4] = 0xEF;
+	s2[256 + 128 + 17 + 4] = 0xCD;
+	s2[256 + 128 + 18 + 4] = 0xAB;
+	s2[256 + 128 + 19 + 4] = 0x89;
+	c = ft_print_memory_plus((void *)(&s2[0]), fd, 500);
+	i = *(unsigned int *)((void *)&s2 + 256 + 128 + 16 + 4);
+	printf(" %.8X\n", i);
+	i = *(unsigned int *)((void *)&s2 + 256 + 128 + 17 + 4);
+	printf(" %.8X\n", i);
+	i = *(unsigned int *)((void *)&s2 + 256 + 128 + 18 + 4);
+	printf(" %.8X\n", i);
+	i = *(unsigned int *)((void *)&s2 + 256 + 128 + 19 + 4);
+	printf(" %.8X\n", i);
+	//c = ft_print_memory_plus((void *)(&s[0]), fd, 88);
+	//c = ft_print_memory((void *)(&s[0]), fd, 88);
+	//c = ft_print_memory_plus((void *)((void *)&s[0] - 1024), fd, 16000);
 	return (0);
 }
 

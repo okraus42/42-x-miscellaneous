@@ -6,7 +6,7 @@
 /*   By: okraus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 10:02:50 by okraus            #+#    #+#             */
-/*   Updated: 2023/02/02 15:32:24 by okraus           ###   ########.fr       */
+/*   Updated: 2023/02/27 18:31:08 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	ft_putunsigned_fd(unsigned int u, int fd, t_output *t)
 	if (!u && t->period && !t->precision && t->padsize)
 	{
 		while (i < t->padsize)
-			i += write(1, " ", 1);
+			i += write(fd, " ", 1);
 		return (i);
 	}
 	if (!u && t->period && !t->precision)

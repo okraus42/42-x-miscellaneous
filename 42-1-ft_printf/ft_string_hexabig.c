@@ -6,7 +6,7 @@
 /*   By: okraus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 10:02:50 by okraus            #+#    #+#             */
-/*   Updated: 2023/02/02 15:32:33 by okraus           ###   ########.fr       */
+/*   Updated: 2023/02/27 18:31:12 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	ft_puthexabig_fd(unsigned int h, int fd, t_output *t)
 	if (!h && t->period && !t->precision && t->padsize)
 	{
 		while (i < t->padsize)
-			i += write(1, " ", 1);
+			i += write(fd, " ", 1);
 		return (i);
 	}
 	if (!h && t->period && !t->precision)

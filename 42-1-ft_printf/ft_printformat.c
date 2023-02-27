@@ -6,7 +6,7 @@
 /*   By: okraus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 13:30:53 by okraus            #+#    #+#             */
-/*   Updated: 2023/02/02 15:59:01 by okraus           ###   ########.fr       */
+/*   Updated: 2023/02/27 16:45:53 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	ft_initialise_struct(t_output *t)
 	t->space = 0;
 	t->plus = 0;
 	t->type = 0;
+	t->base = 0;
 }
 
 int	ft_get_num(t_output *t, const char *s, int i)

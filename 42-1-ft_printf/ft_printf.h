@@ -6,7 +6,7 @@
 /*   By: okraus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 13:43:29 by okraus            #+#    #+#             */
-/*   Updated: 2023/02/02 15:44:59 by okraus           ###   ########.fr       */
+/*   Updated: 2023/02/27 19:12:59 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,12 @@ typedef struct s_output
 	int		space;
 	int		plus;
 	char	type;
+	int		base;
 }			t_output;
 
-int			ft_printf(const char *s, ...);
+int			ft_printf(int fd, const char *s, ...);
 void		ft_putstuff(va_list arg, const char *s, int *q, t_output *t);
-void		ft_writestuff(const char *s, int *q);
+void		ft_writestuff(int fd, const char *s, int *q);
 int			ft_putchar_fd(char c, int fd, t_output *t);
 int			ft_print_char_fd(char s, int fd, t_output *t);
 char		*ft_string_pointer(void *mem);
@@ -69,5 +70,10 @@ char		*ft_precint(char *s, t_output *t);
 int			ft_putbasebig_fd(unsigned int b, int fd, t_output *t);
 int			ft_print_basebig_fd(unsigned int b, int fd, t_output *t);
 char		*ft_string_basebig(unsigned int b, t_output *t);
+int			ft_putbinocthex_fd(void *b, int fd, t_output *t);
+int			ft_print_binocthex_fd(unsigned char b, int fd, t_output *t);
+char		*ft_string_binocthex(unsigned char b, t_output *t);
+int			ft_putcolour_fd(int fd, t_output *t);
+int			ft_print_colour_fd(int fd, t_output	*t);
 
 #endif
