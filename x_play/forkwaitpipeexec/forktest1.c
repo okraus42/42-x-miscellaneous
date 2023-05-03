@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   forktest.c                                         :+:      :+:    :+:   */
+/*   forktest1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: okraus <okraus@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 15:08:31 by okraus            #+#    #+#             */
-/*   Updated: 2023/03/31 16:10:55 by okraus           ###   ########.fr       */
+/*   Updated: 2023/03/31 16:51:23 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+//#include <unistd.h>
 #include <stdlib.h>
-#include <sys/types.h>
+//#include <sys/types.h>
 #include <sys/wait.h>
-#include <time.h>
+//#include <time.h>
 #include "../header/libft.h"
 
 int main(void)
