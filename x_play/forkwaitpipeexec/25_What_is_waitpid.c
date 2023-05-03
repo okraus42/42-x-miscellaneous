@@ -1,61 +1,59 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   23_Simulating_the_pipe_operator_in_C.c             :+:      :+:    :+:   */
+/*   25_What_is_waitpid.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: okraus <okraus@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/03 16:19:07 by okraus            #+#    #+#             */
-/*   Updated: 2023/05/03 16:19:28 by okraus           ###   ########.fr       */
+/*   Created: 2023/05/03 17:44:54 by okraus            #+#    #+#             */
+/*   Updated: 2023/05/03 17:58:22 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <pthread.h>
 #include <unistd.h>
+#include <time.h>
 #include <sys/wait.h>
 
 int	main(int argc, char *argv[])
 {
-	int	fd[2];
 	int	pid1;
 	int	pid2;
+	int	pid1_res;
+	int	pid2_res;
 
-	if (pipe(fd) == -1)
-	{
-		return (1);
-	}
 	pid1 = fork();
 	if (pid1 < 0)
 	{
-		return (2);
+		printf("Error creating process\n");
+		return (1);
 	}
-	//Child process 1 (ping)
 	if (pid1 == 0)
 	{
-		dup2(fd[1], STDOUT_FILENO); // STDOUT_FILENO = 1;
-		close(fd[0]);
-		close(fd[1]);
-		execlp("ping", "ping", "-c", "5", "google.com", NULL);
+		sleep(4);
+		printf("Finished execution (%d)\n", getpid());
+		return (0);
 	}
-	//no need for else because child replaces by exec
 	pid2 = fork();
 	if (pid2 < 0)
 	{
-		return (3);
+		printf("Error creating process\n");
+		return (2);
 	}
-	//Child process 2 (grep)
 	if (pid2 == 0)
 	{
-		dup2(fd[0], STDIN_FILENO); //STDIN_FILENO = 0;
-		close(fd[0]);
-		close(fd[1]);
-		execlp("grep", "grep", "rtt", NULL);
+		sleep(1);
+		printf("Finished execution (%d)\n", getpid());
+		return (0);
 	}
-	close(fd[0]);
-	close(fd[1]);
-	waitpid(pid1, NULL, 0);
-	waitpid(pid2, NULL, 0);
+	pid1_res = waitpid(pid1, NULL, 0);
+	//pid1_res = waitpid(pid1, NULL, WNOHANG);
+	//with WNOHANG instead of the 0 saves the status in NULL and does not wait
+	printf("Waited for process(%d)\n", pid1_res);
+	pid2_res = waitpid(pid2, NULL, 0);
+	printf("Waited for process(%d)\n", pid2_res);
 	return (0);
 }
