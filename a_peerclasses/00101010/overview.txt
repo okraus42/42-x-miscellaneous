@@ -1,0 +1,19 @@
+Binary vs Octal vs Hexadecimal (vs Decimal)
+- ASCII
+- chmod
+- RGB(A)
+
+- Use in .c files 0x vs 0
+
+Bitwise
+ - & | ^ << >>
+ - bitshifts and bitmasks
+ - efficient calculations in base 2
+
+Endianness
+- least significant/ most significant bit and byte
+
+Memory (printing memory)
+- bit vs byte
+- heap vs stack
+- implicit casting?
