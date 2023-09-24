@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bitwise_magic1.c                                   :+:      :+:    :+:   */
+/*   ft_umin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: okraus <okraus@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/22 18:54:16 by okraus            #+#    #+#             */
-/*   Updated: 2023/09/24 16:19:53 by okraus           ###   ########.fr       */
+/*   Created: 2023/06/11 11:42:07 by okraus            #+#    #+#             */
+/*   Updated: 2023/06/11 11:59:37 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "../header/libft.h"
 
-int	main(void)
+unsigned int	ft_umin(unsigned int a, unsigned int b)
 {
-	char	a = 'A';
-	char	b = 'b';
-	char	c = ' ';
-	char	d = '_';
-
-	printf("<%c> | <%c> = <%c>\n", a, c, a | c);
-	printf("<%c> & <%c>= <%c>\n", b, d, b & d);
-	return (0);
+	if (a < b)
+		return (a);
+	else
+		return (b);
 }

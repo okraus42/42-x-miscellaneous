@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bitwise_magic1.c                                   :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: okraus <okraus@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/22 18:54:16 by okraus            #+#    #+#             */
-/*   Updated: 2023/09/24 16:19:53 by okraus           ###   ########.fr       */
+/*   Created: 2023/01/11 15:35:03 by okraus            #+#    #+#             */
+/*   Updated: 2023/08/15 16:08:55 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "../header/libft.h"
 
-int	main(void)
+char	*ft_strrchr(const char *s, int c)
 {
-	char	a = 'A';
-	char	b = 'b';
-	char	c = ' ';
-	char	d = '_';
+	size_t	i;
+	char	*a;
 
-	printf("<%c> | <%c> = <%c>\n", a, c, a | c);
-	printf("<%c> & <%c>= <%c>\n", b, d, b & d);
-	return (0);
+	i = 0;
+	a = NULL;
+	while (s[i])
+	{
+		if (s[i] == (c % 256))
+			a = (char *)&s[i];
+		i++;
+	}
+	if (s[i] == (c % 256))
+		a = (char *)&s[i];
+	return (a);
 }

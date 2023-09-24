@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bitwise_magic1.c                                   :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: okraus <okraus@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/22 18:54:16 by okraus            #+#    #+#             */
-/*   Updated: 2023/09/24 16:19:53 by okraus           ###   ########.fr       */
+/*   Created: 2023/01/14 12:29:25 by okraus            #+#    #+#             */
+/*   Updated: 2023/03/14 15:13:14 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "../header/libft.h"
 
-int	main(void)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	char	a = 'A';
-	char	b = 'b';
-	char	c = ' ';
-	char	d = '_';
+	t_list	*new;
+	t_list	*temp;
 
-	printf("<%c> | <%c> = <%c>\n", a, c, a | c);
-	printf("<%c> & <%c>= <%c>\n", b, d, b & d);
-	return (0);
+	if (!lst || !f || !del)
+		return (NULL);
+	new = NULL;
+	while (lst)
+	{
+		temp = ft_lstnew((*f)(lst->content));
+		if (!temp)
+		{
+			ft_lstclear(&new, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&new, temp);
+		lst = lst->next;
+	}
+	return (new);
 }

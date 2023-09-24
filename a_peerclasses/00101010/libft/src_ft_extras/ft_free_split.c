@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bitwise_magic1.c                                   :+:      :+:    :+:   */
+/*   ft_free_split.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: okraus <okraus@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/22 18:54:16 by okraus            #+#    #+#             */
-/*   Updated: 2023/09/24 16:19:53 by okraus           ###   ########.fr       */
+/*   Created: 2023/03/14 15:57:11 by okraus            #+#    #+#             */
+/*   Updated: 2023/08/15 16:10:02 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "../header/libft.h"
 
-int	main(void)
+void	ft_free_split(char ***splitptr)
 {
-	char	a = 'A';
-	char	b = 'b';
-	char	c = ' ';
-	char	d = '_';
+	int		i;
+	char	**split;
 
-	printf("<%c> | <%c> = <%c>\n", a, c, a | c);
-	printf("<%c> & <%c>= <%c>\n", b, d, b & d);
-	return (0);
+	split = *splitptr;
+	i = 0;
+	while (split[i])
+	{
+		free(split[i]);
+		split[i] = NULL;
+		i++;
+	}
+	free(split);
+	split = NULL;
 }

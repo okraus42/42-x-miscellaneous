@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bitwise_magic1.c                                   :+:      :+:    :+:   */
+/*   ft_dlstnew.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: okraus <okraus@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/22 18:54:16 by okraus            #+#    #+#             */
-/*   Updated: 2023/09/24 16:19:53 by okraus           ###   ########.fr       */
+/*   Created: 2023/01/14 12:25:05 by okraus            #+#    #+#             */
+/*   Updated: 2023/03/14 15:12:17 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "../header/libft.h"
 
-int	main(void)
+t_dlist	*ft_dlstnew(void *content)
 {
-	char	a = 'A';
-	char	b = 'b';
-	char	c = ' ';
-	char	d = '_';
+	t_dlist	*dlst;
 
-	printf("<%c> | <%c> = <%c>\n", a, c, a | c);
-	printf("<%c> & <%c>= <%c>\n", b, d, b & d);
-	return (0);
+	dlst = malloc(sizeof(t_dlist));
+	if (dlst == NULL)
+		return (NULL);
+	dlst->content = content;
+	dlst->prev = NULL;
+	dlst->next = NULL;
+	return (dlst);
 }

@@ -1,25 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bitwise_magic1.c                                   :+:      :+:    :+:   */
+/*   ft_dlstadd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: okraus <okraus@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/22 18:54:16 by okraus            #+#    #+#             */
-/*   Updated: 2023/09/24 16:19:53 by okraus           ###   ########.fr       */
+/*   Created: 2023/01/14 12:25:15 by okraus            #+#    #+#             */
+/*   Updated: 2023/03/14 15:12:08 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "../header/libft.h"
 
-int	main(void)
+void	ft_dlstadd(t_dlist **dlst, t_dlist *new)
 {
-	char	a = 'A';
-	char	b = 'b';
-	char	c = ' ';
-	char	d = '_';
+	t_dlist	*tmp;
+	t_dlist	*tmp2;
 
-	printf("<%c> | <%c> = <%c>\n", a, c, a | c);
-	printf("<%c> & <%c>= <%c>\n", b, d, b & d);
-	return (0);
+	if (*dlst)
+	{
+		tmp = *dlst;
+		new->next = tmp;
+		new->prev = tmp;
+		tmp2 = tmp->prev;
+		tmp->prev = new;
+		if (tmp2)
+		{
+			tmp2->next = new;
+			new->prev = tmp2;
+		}
+		else
+		{
+			tmp->next = new;
+			tmp->prev = new;
+		}
+	}
+	*dlst = new;
 }
