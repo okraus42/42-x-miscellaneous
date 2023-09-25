@@ -6,17 +6,22 @@
 /*   By: okraus <okraus@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 13:15:10 by okraus            #+#    #+#             */
-/*   Updated: 2023/09/25 13:35:02 by okraus           ###   ########.fr       */
+/*   Updated: 2023/09/25 13:40:01 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/header/libft.h"
 
+/*Endianness is primarily expressed as big-endian (BE) or little-endian (LE).
+A big-endian system stores the most significant byte of a word at the smallest
+memory address and the least significant byte at the largest.
+A little-endian system, in contrast, stores the least-significant byte
+at the smallest address*/
 int	main(void)
 {
-	int	hex[4] = {0xaabbccdd, 0x23456789, 0x00000000, 0xffffffff};
-	int	hex2[4] = {0x00001234, 0x00000000, 0xFEDC0000, 0x00000000};
-	int	i = -1;
+	int		hex[4] = {0xaabbccdd, 0x23456789, 0x00000000, 0xffffffff};
+	int		hex2[4] = {0x00001234, 0x00000000, 0xFEDC0000, 0x00000000};
+	int		i = -1;
 	char	*byte = (char *)hex;
 
 	ft_print_memory_plus(hex, 1, 16);
