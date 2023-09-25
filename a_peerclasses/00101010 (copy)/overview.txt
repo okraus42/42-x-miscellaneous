@@ -1,0 +1,25 @@
+Binary vs Octal vs Hexadecimal (vs Decimal)
+- ASCII
+- chmod
+- RGB(A)
+
+- Use in .c files 0x vs 0
+(Max INT, max Unsigned INT = -1 in binary)
+
+Binary is for computers, hexadecimal is for humans (hard to not get lost in the 1's and 0's)
+Computers can "remember" lots of simple symbols.
+Humans can remember few complex symbols. (about 8 in short term memory)
+Hexadecimal works for bytes of 8 bits.
+
+Bitwise
+ - & | ^ << >>
+ - bitshifts and bitmasks
+ - efficient calculations in base 2
+
+Endianness
+- least significant/ most significant bit and byte
+
+Memory (printing memory)
+- bit vs byte
+- heap vs stack
+- implicit casting?
