@@ -6,7 +6,7 @@
 /*   By: okraus <okraus@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 15:02:35 by okraus            #+#    #+#             */
-/*   Updated: 2023/10/20 16:44:25 by okraus           ###   ########.fr       */
+/*   Updated: 2023/10/20 16:48:49 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,8 @@ int	main(int argc, char *argv[])
 
 	ft_fill_clog(clog);
 	ft_fill_clin(clin);
-	ft_printf("%i %i \n", clog[0xFFFF], clin[0xFFFF]);
+	ft_printf("%X %X \n", clog[0x8020], clin[0x8020]);
+	ft_printf("%X %X \n", clog[0x2080], clin[0x2080]);
 	if (argc != 3)
 		return (ft_dprintf(2, "Incorrect number of arguments\n"));
 	else
