@@ -6,7 +6,7 @@
 /*   By: okraus <okraus@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 13:43:29 by okraus            #+#    #+#             */
-/*   Updated: 2023/10/19 15:09:32 by okraus           ###   ########.fr       */
+/*   Updated: 2023/11/12 16:39:21 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,10 @@
 # define BASE_CAP	"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 # define BASE_SML	"0123456789abcdefghijklmnopqrstuvwxyz"
 # define BASE_HEX	"0123456789ABCDEF"
+
+//	MACROS - forbidden?
+
+//# define ABS(Value) (Value < 0 ? -Value : Value)
 
 typedef enum e_print_flag
 {
