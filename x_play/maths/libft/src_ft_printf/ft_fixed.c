@@ -6,7 +6,7 @@
 /*   By: okraus <okraus@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 09:51:35 by okraus            #+#    #+#             */
-/*   Updated: 2023/11/17 12:10:47 by okraus           ###   ########.fr       */
+/*   Updated: 2023/11/17 18:34:11 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,6 +201,7 @@ static void	ft_process_prec(char *s, char *str, int w, int prec)
 		str[i] = s[i];
 		i++;
 	}
+	printf("1a: %s\n", str);
 	if (!s[i])
 	{
 		while (i < w + prec + 2)
@@ -208,14 +209,19 @@ static void	ft_process_prec(char *s, char *str, int w, int prec)
 			str[i] = '0';
 			i++;
 		}
+		ft_printf("%.*C1b: %s, %i, %i%C\n", 0xFF8888, str, w, prec);
 	}
 	else
+	{
 		ft_round_string(str);
+		ft_printf("%.*C1c: %s%C\n", 0x88FF88, str);
+	}
 	if (!prec)
 	i = 0;
 	while (str[++i] != 0)
 		if (str[i] == '.')
 			str[i] = 0;
+	printf("1d: %s\n", str);
 }
 
 static int	ft_fix_prec(t_pf_info *data)
@@ -252,6 +258,7 @@ int	ft_process_prcfix(t_pf_info *data)
 	data->out = ft_fixtoa(data->value.ll, data->baselen);
 	if (!data->out)
 		return (1);
+	printf("1: %s\n", data->out);
 	if (data->out[0] == '-')
 	{
 		temp = data->out;
@@ -263,6 +270,7 @@ int	ft_process_prcfix(t_pf_info *data)
 	if (data->flag & PERIOD || (data->flag & ZERO && !(data->flag & 0x84)))
 		if (ft_fix_prec(data))
 			return (1);
+	printf("2: %s\n", data->out);
 	if (ft_signed_flags(data))
 		return (1);
 	if (data->field_width > ft_strlen(data->out))
