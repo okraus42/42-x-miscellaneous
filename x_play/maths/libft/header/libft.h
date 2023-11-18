@@ -6,7 +6,7 @@
 /*   By: okraus <okraus@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 13:43:29 by okraus            #+#    #+#             */
-/*   Updated: 2023/11/17 11:17:20 by okraus           ###   ########.fr       */
+/*   Updated: 2023/11/18 16:43:37 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -536,8 +536,9 @@ int				ft_init_list(va_list arg, t_list *lst);
 
 //	ft_fixtoa. + temp;
 char			*ft_fixtoa(long long n, unsigned int fixbits);
+char			*ft_fixstr(long long n, int declen, char *whole, char *decimal);
 int				ft_process_prcfix(t_pf_info *data);
-
+int				ft_fix_prec(t_pf_info *data);
 
 // void			ft_putstuff(va_list arg, const char *s, int *q, t_output *t);
 // void			ft_writestuff(int fd, const char *s, int *q);
