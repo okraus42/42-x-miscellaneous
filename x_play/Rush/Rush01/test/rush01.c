@@ -6,7 +6,7 @@
 /*   By: okraus <okraus@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 12:23:20 by okraus            #+#    #+#             */
-/*   Updated: 2024/01/30 17:21:21 by okraus           ###   ########.fr       */
+/*   Updated: 2024/01/30 17:23:36 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -841,8 +841,7 @@ int	main(int argc, char *argv[])
 	unsigned int	input;
 	int				i;
 
-	(void)argc;
-	if (!argv[1] || argv[2])
+	if (argc ^ 2)
 	{
 		write (2, "Error\n", 6);
 		return (WRONG_NUMBER_OF_ARGUMENTS);
