@@ -6,7 +6,7 @@
 /*   By: okraus <okraus@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 13:49:23 by okraus            #+#    #+#             */
-/*   Updated: 2023/11/17 18:52:16 by okraus           ###   ########.fr       */
+/*   Updated: 2024/01/11 12:42:34 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	main(int ac, char *av[])
 		return (1);
 	fp = ft_printf("ftprint: %.*^*P\n\n", ft_atoi(av[1]), ft_atoi(av[2]), ft_atoi(av[3]));
 	printf ("fp = %d\n", fp);
+	printf ("%.10f\n", 42.42f);
 	return (0);
 }
 
