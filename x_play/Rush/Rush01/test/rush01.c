@@ -6,12 +6,12 @@
 /*   By: okraus <okraus@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 12:23:20 by okraus            #+#    #+#             */
-/*   Updated: 2024/01/30 17:23:36 by okraus           ###   ########.fr       */
+/*   Updated: 2024/01/30 18:17:23 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include <stdio.h>
+//#include <stdio.h>
 
 #define SUCCESS 0
 #define NO_SOLUTION 1
@@ -29,47 +29,47 @@
 // 	r4l	30  31  32  33	r4r
 //		c1d c2d c2d c4d
 
-#define M33(a) (a & 0x3)
-#define M32(a) ((a & 0xC) >> 2)
-#define M31(a) ((a & 0x30) >> 4)
-#define M30(a) ((a & 0xC0) >> 6)
-#define M23(a) ((a & 0x300) >> 8)
-#define M22(a) ((a & 0xC00) >> 10)
-#define M21(a) ((a & 0x3000) >> 12)
-#define M20(a) ((a & 0xC000) >> 14)
-#define M13(a) ((a & 0x30000) >> 16)
-#define M12(a) ((a & 0xC0000) >> 18)
-#define M11(a) ((a & 0x300000) >> 20)
-#define M10(a) ((a & 0xC00000) >> 22)
-#define M03(a) ((a & 0x3000000) >> 24)
-#define M02(a) ((a & 0xC000000) >> 26)
-#define M01(a) ((a & 0x30000000) >> 28)
-#define M00(a) ((a & 0xC0000000) >> 30)
+// #define M33(a) ((a) & 0x3)
+// #define M32(a) (((a) & 0xC) >> 2)
+// #define M31(a) (((a) & 0x30) >> 4)
+// #define M30(a) (((a) & 0xC0) >> 6)
+// #define M23(a) (((a) & 0x300) >> 8)
+// #define M22(a) (((a) & 0xC00) >> 10)
+// #define M21(a) (((a) & 0x3000) >> 12)
+// #define M20(a) (((a) & 0xC000) >> 14)
+// #define M13(a) (((a) & 0x30000) >> 16)
+// #define M12(a) (((a) & 0xC0000) >> 18)
+// #define M11(a) (((a) & 0x300000) >> 20)
+// #define M10(a) (((a) & 0xC00000) >> 22)
+// #define M03(a) (((a) & 0x3000000) >> 24)
+// #define M02(a) (((a) & 0xC000000) >> 26)
+// #define M01(a) (((a) & 0x30000000) >> 28)
+// #define M00(a) (((a) & 0xC0000000) >> 30)
 
-#define BIG(a, b) (((b) > (a)) * 1)
-#define BIGGER(a, b, c) ((((c) > (b)) && ((c) > (a))) * 1)
-#define BIGGEST(a, b, c ,d) ((((d) > (c)) && ((d) > (b)) && ((d) > (a))) * 1)
+// #define BIG(a, b) (((b) > (a)) * 1)
+// #define BIGGER(a, b, c) ((((c) > (b)) && ((c) > (a))) * 1)
+// #define BIGGEST(a, b, c ,d) ((((d) > (c)) && ((d) > (b)) && ((d) > (a))) * 1)
 
-#define VIS(a, b, c, d) (BIG(a, b) + BIGGER(a, b, c) + BIGGEST(a, b, c, d))
+// #define VIS(a, b, c, d) (BIG(a, b) + BIGGER(a, b, c) + BIGGEST(a, b, c, d))
 
-#define C1U(a) (VIS(M00(a), M10(a), M20(a), M30(a)))
-#define C2U(a) (VIS(M01(a), M11(a), M21(a), M31(a)))
-#define C3U(a) (VIS(M02(a), M12(a), M22(a), M32(a)))
-#define C4U(a) (VIS(M03(a), M13(a), M23(a), M33(a)))
-#define C1D(a) (VIS(M30(a), M20(a), M10(a), M00(a)))
-#define C2D(a) (VIS(M31(a), M21(a), M11(a), M01(a)))
-#define C3D(a) (VIS(M32(a), M22(a), M12(a), M02(a)))
-#define C4D(a) (VIS(M33(a), M23(a), M13(a), M03(a)))
-#define C1L(a) (VIS(M00(a), M01(a), M02(a), M03(a)))
-#define C2L(a) (VIS(M10(a), M11(a), M12(a), M13(a)))
-#define C3L(a) (VIS(M20(a), M21(a), M22(a), M23(a)))
-#define C4L(a) (VIS(M30(a), M31(a), M32(a), M33(a)))
-#define C1R(a) (VIS(M03(a), M02(a), M01(a), M00(a)))
-#define C2R(a) (VIS(M13(a), M12(a), M11(a), M10(a)))
-#define C3R(a) (VIS(M23(a), M22(a), M21(a), M20(a)))
-#define C4R(a) (VIS(M33(a), M32(a), M31(a), M30(a)))
+// #define C1U(a) (VIS(M00(a), M10(a), M20(a), M30(a)))
+// #define C2U(a) (VIS(M01(a), M11(a), M21(a), M31(a)))
+// #define C3U(a) (VIS(M02(a), M12(a), M22(a), M32(a)))
+// #define C4U(a) (VIS(M03(a), M13(a), M23(a), M33(a)))
+// #define C1D(a) (VIS(M30(a), M20(a), M10(a), M00(a)))
+// #define C2D(a) (VIS(M31(a), M21(a), M11(a), M01(a)))
+// #define C3D(a) (VIS(M32(a), M22(a), M12(a), M02(a)))
+// #define C4D(a) (VIS(M33(a), M23(a), M13(a), M03(a)))
+// #define C1L(a) (VIS(M00(a), M01(a), M02(a), M03(a)))
+// #define C2L(a) (VIS(M10(a), M11(a), M12(a), M13(a)))
+// #define C3L(a) (VIS(M20(a), M21(a), M22(a), M23(a)))
+// #define C4L(a) (VIS(M30(a), M31(a), M32(a), M33(a)))
+// #define C1R(a) (VIS(M03(a), M02(a), M01(a), M00(a)))
+// #define C2R(a) (VIS(M13(a), M12(a), M11(a), M10(a)))
+// #define C3R(a) (VIS(M23(a), M22(a), M21(a), M20(a)))
+// #define C4R(a) (VIS(M33(a), M32(a), M31(a), M30(a)))
 
-const unsigned char	solutions[576][33] = {
+const unsigned char	g_solutions[576][33] = {
 	"1 2 3 4\n2 1 4 3\n3 4 1 2\n4 3 2 1\n",
 	"1 2 3 4\n2 1 4 3\n3 4 2 1\n4 3 1 2\n",
 	"1 2 3 4\n2 1 4 3\n4 3 1 2\n3 4 2 1\n",
@@ -645,10 +645,9 @@ const unsigned char	solutions[576][33] = {
 	"4 3 2 1\n3 4 1 2\n1 2 3 4\n2 1 4 3\n",
 	"4 3 2 1\n3 4 1 2\n1 2 4 3\n2 1 3 4\n",
 	"4 3 2 1\n3 4 1 2\n2 1 3 4\n1 2 4 3\n",
-	"4 3 2 1\n3 4 1 2\n2 1 4 3\n1 2 3 4\n",
-	};
+	"4 3 2 1\n3 4 1 2\n2 1 4 3\n1 2 3 4\n"};
 
-const unsigned int	inputs[576] = {0xd417d417, 0xd41ad41a, 0xa447d11a,
+const unsigned int	g_inputs[576] = {0xd417d417, 0xd41ad41a, 0xa447d11a,
 	0xa44ad11d, 0xe415e415, 0xa44ae115, 0xd417d417, 0x9462d11d, 0x9416d417,
 	0xa449d11d, 0x9416d417, 0x9425d815, 0x9452d215, 0x9461d11d, 0x9416d426,
 	0x9461d129, 0x6446c915, 0x5493c615, 0x6446c526, 0x6491c529, 0x6446c535,
@@ -746,7 +745,6 @@ const unsigned int	inputs[576] = {0xd417d417, 0xd41ad41a, 0xa447d11a,
 	0x169417d4, 0x16891dd1, 0x17d417d4, 0x199115c9, 0x15c615c6, 0x1aa11dd1,
 	0x17a41ad4, 0x1ad11ad1, 0x17d417d4};
 
-
 //	helper functions to generate the array of solutions, and inputs
 //	not needed for the actual program
 
@@ -842,10 +840,7 @@ int	main(int argc, char *argv[])
 	int				i;
 
 	if (argc ^ 2)
-	{
-		write (2, "Error\n", 6);
-		return (WRONG_NUMBER_OF_ARGUMENTS);
-	}
+		return (write (2, "Error\n", 6), WRONG_NUMBER_OF_ARGUMENTS);
 	i = 0;
 	input = 0;
 	while (i < 16)
@@ -853,25 +848,16 @@ int	main(int argc, char *argv[])
 		if (argv[1][2 * i] < '1' || argv[1][2 * i] > '4'
 			|| ((argv[1][2 * i + 1] ^ ' ') && (i < 15)))
 			break ;
-		input |= (unsigned char)argv[1][2 * i] - (unsigned char)'1';
+		input |= argv[1][2 * i] - '1';
 		if (i < 15)
 			input <<= 2;
 		++i;
 	}
-	if (i ^ 16)
-	{
-		write (2, "Error\n", 6);
-		return (WRONG_INPUT);
-	}
+	if (i ^ 16 || argv[1][31])
+		return (write (2, "Error\n", 6), WRONG_INPUT);
 	i = -1;
 	while (++i < 576)
-	{
-		if (input == inputs[i])
-		{
-			write(1, solutions[i], 32);
-			return (SUCCESS);
-		}
-	}
-	write (2, "Error\n", 6);
-	return (NO_SOLUTION);
+		if (input == g_inputs[i])
+			return (write(1, g_solutions[i], 32), SUCCESS);
+	return (write (2, "Error\n", 6), NO_SOLUTION);
 }
