@@ -57,3 +57,5 @@ Module.symvers
 Mkfile.old
 dkms.conf
 CPP/test
+z_tests/xor/wtf
+z_tests/xor/xor
